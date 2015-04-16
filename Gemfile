@@ -1,6 +1,13 @@
 source 'https://rubygems.org'
 
-gemspec
+gem 'rake'
 
-gem 'activemodel'
-gem 'railties'
+gem 'guard'
+gem 'guard-rspec'
+gem 'rspec'
+gem 'timecop'
+
+gem 'activesupport', '~> 3.2'
+gem 'activemodel', :require => false
+
+gemspec

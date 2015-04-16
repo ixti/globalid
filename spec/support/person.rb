@@ -1,7 +1,7 @@
 class Person
   include GlobalID::Identification
 
-  HARDCODED_ID_FOR_MISSING_PERSON = '1000'
+  HARDCODED_ID_FOR_MISSING_PERSON = "1000"
 
   attr_reader :id
 
@@ -13,7 +13,7 @@ class Person
       id = id_or_ids
 
       if id == HARDCODED_ID_FOR_MISSING_PERSON
-        raise 'Person missing'
+        fail "Person missing"
       else
         new(id)
       end
@@ -21,7 +21,7 @@ class Person
   end
 
   def self.where(conditions)
-    (conditions[:id] - [HARDCODED_ID_FOR_MISSING_PERSON]).collect { |id| new(id) }
+    (conditions[:id] - [HARDCODED_ID_FOR_MISSING_PERSON]).map { |id| new id }
   end
 
   def initialize(id = 1)

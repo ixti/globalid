@@ -1,4 +1,5 @@
 require 'active_support'
+require 'active_support/core_ext/hash/slice' # For Hash#slice
 require 'active_support/core_ext/enumerable' # For Enumerable#index_by
 
 class GlobalID
@@ -141,7 +142,8 @@ class GlobalID
         end
       end
 
-      mattr_reader(:default_locator) { ActiveRecordFinder.new }
+      mattr_reader :default_locator
+      class_variable_set('@@default_locator', ActiveRecordFinder.new)
 
       class BlockLocator
         def initialize(block)
